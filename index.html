@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Calcular Claves</title>
+		<script>
+			var $numeroclave;
+			var mensaje = true; 
+			function test() {
+				if(document.getElementById("txtpreclave").value=="")
+				{
+					alert('Debe Digitar la Pre-Clave');
+				}
+				else
+				{
+					var $dia;var $mes;var $preclave;
+					$preclave=document.getElementById("txtpreclave").value;
+					$preclave=parseInt($preclave);
+					var hoy = new Date();
+					$dia = hoy.getDate();
+					$dia =parseInt($dia);
+					var $tipo=document.getElementById('selectid').options[document.getElementById('selectid').selectedIndex].value;
+					$tipo=parseInt($tipo);
+				    var $puntos=document.getElementById('selectp').options[document.getElementById('selectp').selectedIndex].value;
+				    $puntos=parseInt($puntos)
+				    $numeroclave=($tipo*$dia*$preclave*$puntos);
+				    document.getElementById("txtresultado").value = $numeroclave;
+			   }
+			}
+			function copiaPortapapeles() {
+ 
+				// Seleccionamos el texto que vamos a copiar
+				document.getElementById("txtresultado").select();
+				// Copiamos el texto al portapapeles de windows
+				window.clipboardData.setData("Text", document.getElementById("txtresultado").value);
+				// Si mensaje es true se ejecuta
+				if (mensaje) {
+					// Mostramos el mensaje de alerta
+					alert('Texto copiado al portapapeles!!!');
+				}
+			}
+				 
+		</script>
+		<style>
+			#txtresultado{
+				width:200px;
+				background-color:green;
+				color:white; padding:10px;
+				text-align: center;
+				font-size: 18px;
+				margin: 15px;
+			}
+			#txtpreclave{
+				width:200px;
+				background-color:blue;
+				color:white; padding:10px;
+				text-align: center;
+				font-size: 18px;
+			}
+			#selectp{
+				font-size: 10px;
+				width:305px;
+			}
+			body{
+				width:420px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<h2>HERRAMIENTA DE CALCULO</h2>
+		<form>
+			<fieldset>
+				<legend style="width: 300px">Datos Para Calcular</legend>
+				<br />
+				<label>Tipo Anulacion</label>
+				<select id="selectid">
+					<option value="2">Anulacion</option>
+					<option value="3">Devolucion</option>
+					<option value="7">Descuentos</option>
+					<option value="1">Factura Original</option>
+					<option value="4">Cambiar Precios</option>
+				</select>
+				<br>
+				<br>
+				<label>Puntos</label>
+				<select id="selectp">
+					<option style="font-size: 10px" value="7013">ECONOMIA 713 - CEDRITOS</option>
+					<option style="font-size: 10px" value="7014">ECONOMIA 714 - RINCON DEL CHICO 1</option>
+					<option style="font-size: 10px" value="7017">ECONOMIA 717 - LA SALLE</option>
+					<option style="font-size: 10px" value="7019">ECONOMIA 719 - CHAPINERO</option>
+					<option style="font-size: 10px" value="7020">ECONOMIA 720 - MADRID</option>
+					<option style="font-size: 10px" value="7027">ECONOMIA 727 - VILLA LUZ</option>
+					<option style="font-size: 10px" value="7060">LA ECONOMIA DROGUERIA No.7060</option>
+					<option style="font-size: 10px" value="8018">ECONOMIA 818 - CAJICA</option>
+					<option style="font-size: 10px" value="8024">ECONOMIA 824 - SIMIJACA</option>
+					<option style="font-size: 10px" value="8037">ECONOMIA 837 - VILLAVICENCIO</option>
+					<option style="font-size: 10px" value="8046">LA ECONOMIA DROGUERIA 8046</option>
+					<option style="font-size: 10px" value="8015">LA ECONOMIA DROGUERIA No 815 .</option>
+				</select>
+				<br>
+				<br>
+				<label>Ingrese la Preclave: </label>
+				<input name="txtpreclave" type="text" id="txtpreclave" value="" autofocus/>
+				<br>
+				<br>
+				<input 		style="font-size: 18px; margin-left: 120px" 
+						  	type="button"
+						  	value="Calcular"
+						  	onclick="test()"
+				/>
+				<br> 
+				<input name="txtresultado" type="text" id="txtresultado" value=""/>
+				<input type="button"  value="Seleccionar" onclick="copiaPortapapeles()">
+			</fieldset>
+		</form>
+	</body>
+</html>
